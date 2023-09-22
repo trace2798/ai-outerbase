@@ -1,23 +1,21 @@
-import { NextRequest, NextResponse } from "next/server";
-import { PineconeClient } from "@pinecone-database/pinecone";
-import { queryPineconeVectorStoreAndQueryLLM } from "../../../utils";
+import { Pinecone } from "@pinecone-database/pinecone";
+import { StreamingTextResponse } from "ai";
+import { NextRequest } from "next/server";
 import { indexName } from "../../../config";
-import { StreamingTextResponse } from 'ai';
+import { queryPineconeVectorStoreAndQueryLLM } from "../../../utils";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const client = new PineconeClient();
-  const clientdata = await client.init({
+  const client = new Pinecone({
     apiKey: process.env.PINECONE_API_KEY || "",
     environment: process.env.PINECONE_ENVIRONMENT || "",
   });
 
-  const text = await queryPineconeVectorStoreAndQueryLLM(
+  const response = await queryPineconeVectorStoreAndQueryLLM(
     client,
     indexName,
     body
   );
-  console.log(text, "TEXT TEXT");
-  return new StreamingTextResponse(text)
-  
+  console.log(response, "TEXT TEXT");
+  return new StreamingTextResponse(response);
 }

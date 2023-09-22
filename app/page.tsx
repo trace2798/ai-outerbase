@@ -1,4 +1,5 @@
 "use client";
+import { EmptyStateAI } from "@/components/empty";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useChat } from "ai/react";
@@ -39,8 +40,7 @@ export default function Home() {
         ))
       ) : (
         <>
-        <h1>Empty</h1>
-          {/* <EmptyStateAI setInput={setInput} /> */}
+          <EmptyStateAI setInput={setInput} />
         </>
       )}
       <form onSubmit={handleSubmit}>
