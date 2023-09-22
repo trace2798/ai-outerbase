@@ -35,12 +35,12 @@ export async function POST(req: Request) {
         streaming: true,
         temperature: 1.0,
       });
-      const promptTemplate = `Use the following pieces of data to answer the question at the end. Try to be brief and to the point if possible.
-${content}
-Question: ${question}
-`;
-      const prompt = PromptTemplate.fromTemplate(promptTemplate);
-      const chain = loadQAStuffChain(llm, { prompt });
+      //       const promptTemplate = `Use the following pieces of data to answer the question at the end. Try to be brief and to the point if possible.
+      // ${content}
+      // Question: ${question}
+      // `;
+      //       const prompt = PromptTemplate.fromTemplate(promptTemplate);
+      const chain = loadQAStuffChain(llm);
       console.log(chain, "CHAIN");
       const concatenatedPageContent = data.matches
         .map((match: any) => match.metadata.pageContent)
