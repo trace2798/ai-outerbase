@@ -15,42 +15,7 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
   console.log("Querying Pinecone vector store...");
   // 2. Retrieve the Pinecone index
   const index = client.Index(indexName);
-  // 3. Create query embedding
-  // const queryEmbeddin = await new OpenAIEmbeddings().embedQuery(question);
-  // console.log(queryEmbeddin, "Question EMBEDDIN");
-  // const openaiembed = await fetch(
-  //   `https://daily-beige.cmd.outerbase.io/embedopenai`,
-  //   {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(question),
-  //   }
-  // );
-  // const queryEmbedding = await openaiembed.json();
-  // console.log(queryEmbedding, "Question EMBEDDING");
-  // 4. Query Pinecone index and return top 10 matches
-  // let queryResponse = await index.query({
-  //   queryRequest: {
-  //     topK: 10,
-  //     vector: queryEmbedding,
-  //     // includeMetadata: true,
-  //     includeValues: true,
-  //   },
-  // });
-  // const response = await fetch(
-  //   `https://daily-beige.cmd.outerbase.io/queryPinecone`,
-  //   {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(queryEmbedding),
-  //   }
-  // );
-  // const data = await response.json();
-  // console.log(data, "COMMAND Query DATA");
+ 
   const response = await fetch(
     `https://daily-beige.cmd.outerbase.io/embedandquery`,
     {
