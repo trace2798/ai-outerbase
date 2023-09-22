@@ -3,6 +3,7 @@ import { loadQAStuffChain } from "langchain/chains";
 import { Document } from "langchain/document";
 import { OpenAI } from "langchain/llms/openai";
 import { NextRequest, NextResponse } from "next/server";
+import { PromptTemplate } from "langchain/prompts";
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,7 +26,12 @@ export async function POST(req: NextRequest) {
         streaming: true,
         temperature: 1.0,
       });
-      const chain = loadQAStuffChain(llm);
+      const promptTemplate = `Use the following pieces of context to answer the question at the end. Try to be brief and to the point if possible.
+{context}
+Question: {question}
+Answer in English:`;
+      const prompt = PromptTemplate.fromTemplate(promptTemplate);
+      const chain = loadQAStuffChain(llm, { prompt });
       console.log(chain, "CHAIN");
       const concatenatedPageContent = data.matches
         .map((match: any) => match.metadata.pageContent)

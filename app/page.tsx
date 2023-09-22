@@ -1,5 +1,6 @@
 "use client";
 import { EmptyStateAI } from "@/components/empty";
+import IndexDatabase from "@/components/indexDatabase";
 import { Input } from "@/components/ui/input";
 
 import { cn } from "@/lib/utils";
@@ -62,6 +63,7 @@ export default function Home() {
           placeholder="Talk to the application..."
           onChange={handleInputChange}
         />
+        {/* <IndexDatabase /> */}
       </form>
     </div>
   );

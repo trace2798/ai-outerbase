@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
-import { Pinecone, PineconeClient } from "@pinecone-database/pinecone";
-import { TextLoader } from "langchain/document_loaders/fs/text";
+import { Pinecone } from "@pinecone-database/pinecone";
 import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { createPineconeIndex, updatePinecone } from "../../../utils";
+import { TextLoader } from "langchain/document_loaders/fs/text";
+import { NextResponse } from "next/server";
 import { indexName } from "../../../config";
+import { createPineconeIndex, updatePinecone } from "../../../utils";
 
 export async function POST() {
   const loader = new DirectoryLoader("./documents", {
@@ -22,7 +22,7 @@ export async function POST() {
   });
 
   try {
-    await createPineconeIndex(client, indexName, vectorDimensions);
+    // await createPineconeIndex(client, indexName, vectorDimensions);
     await updatePinecone(client, indexName, docs);
   } catch (err) {
     console.log("error: ", err);
