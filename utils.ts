@@ -15,7 +15,7 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
   console.log("Querying Pinecone vector store...");
   // 2. Retrieve the Pinecone index
   const index = client.Index(indexName);
- 
+
   const response = await fetch(
     `https://daily-beige.cmd.outerbase.io/embedandquery`,
     {
@@ -35,8 +35,13 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
   console.log(`Asking question: ${question}...`);
   if (data.matches.length) {
     // 7. Create an OpenAI instance and load the QAStuffChain
-    const llm = new OpenAI({});
+    const llm = new OpenAI({
+      modelName: "gpt-3.5-turbo",
+      streaming: true,
+      temperature: 0.7,
+    });
     const chain = loadQAStuffChain(llm);
+    console.log(chain, "CHAIN");
     // 8. Extract and concatenate page content from matched documents
     const concatenatedPageContent = data.matches
       .map((match: any) => match.metadata.pageContent)

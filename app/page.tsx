@@ -56,7 +56,6 @@ export default function Home() {
           </div>
         )}
         <div ref={scrollRef} />
-
         <Input
           className="fixed bottom-0 w-[80vw] md:w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
           value={input}

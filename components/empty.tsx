@@ -8,17 +8,16 @@ import Typewriter from "typewriter-effect";
 
 const exampleMessages = [
   {
-    heading: "Ask you data a question",
-    message: `Tell me about my data`,
+    heading: "Tech stack",
+    message: `What is the tech stack for this application?`,
   },
   {
-    heading: "Ask about books you have added",
-    message: "What are the names of the books I have added?",
+    heading: "Outerbase commands",
+    message: "What are Outerbase commands?",
   },
   {
-    heading: "Ask for numbers",
-    message:
-      "Can you tell me about the numbers of books and reviews I have added?",
+    heading: "Outerbase implementation",
+    message: "How is outerbase being used in this application?",
   },
 ];
 
@@ -28,7 +27,7 @@ export function EmptyStateAI({ setInput }: Pick<UseChatHelpers, "setInput">) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsTypingDone(true);
-    }, 11000);
+    }, 14500);
 
     return () => clearTimeout(timer); // This will clear the timeout if the component unmounts before the timeout finishes
   }, []);
@@ -38,7 +37,7 @@ export function EmptyStateAI({ setInput }: Pick<UseChatHelpers, "setInput">) {
         <div className="text-2xl font-ranadeRegular">
           <Typewriter
             options={{
-              strings: ["Welcome", "Ask your data a question"],
+              strings: ["Welcome", "Ask a question related to the application"],
               autoStart: true,
               loop: true,
             }}
@@ -49,11 +48,7 @@ export function EmptyStateAI({ setInput }: Pick<UseChatHelpers, "setInput">) {
         <Card className="p-5 bg-muted font-ranadeLight">
           <div className="flex flex-col items-center w-full justify-center">
             <p className="w-full mt-3">
-              {" "}
-              Not custom trained on this data so response likely to hallucinate.
-            </p>
-            <p className="w-full mt-3">
-              The data for the answers have been fetch using Outerbase Commands.
+              Outerbase x OpenAI x Pinecone Integration.
             </p>
           </div>
           <div className="mt-4 flex flex-col items-start space-y-2">

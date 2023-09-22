@@ -18,9 +18,15 @@ export async function POST(req: NextRequest) {
       }
     );
     const data = await embedandquerypinecone.json();
+    console.log(data);
     if (data.matches.length) {
-      const llm = new OpenAI({});
+      const llm = new OpenAI({
+        modelName: "gpt-3.5-turbo",
+        streaming: true,
+        temperature: 1.0,
+      });
       const chain = loadQAStuffChain(llm);
+      console.log(chain, "CHAIN");
       const concatenatedPageContent = data.matches
         .map((match: any) => match.metadata.pageContent)
         .join(" ");
