@@ -1,11 +1,13 @@
 "use client";
 import { EmptyStateAI } from "@/components/empty";
 import { Input } from "@/components/ui/input";
+
 import { cn } from "@/lib/utils";
 import { useChat } from "ai/react";
 import { useTheme } from "next-themes";
-import { ElementRef, useEffect, useRef, useState } from "react";
+import { ElementRef, useEffect, useRef } from "react";
 import { BeatLoader } from "react-spinners";
+
 export default function Home() {
   const {
     messages,
@@ -21,6 +23,7 @@ export default function Home() {
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages.length]);
+
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
       {messages.length > 0 ? (
@@ -53,10 +56,11 @@ export default function Home() {
           </div>
         )}
         <div ref={scrollRef} />
+
         <Input
           className="fixed bottom-0 w-[80vw] md:w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
           value={input}
-          placeholder="Talk to your data..."
+          placeholder="Talk to the application..."
           onChange={handleInputChange}
         />
       </form>
