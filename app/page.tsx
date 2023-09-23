@@ -1,70 +1,35 @@
 "use client";
-import { EmptyStateAI } from "@/components/empty";
-import IndexDatabase from "@/components/indexDatabase";
-import { Input } from "@/components/ui/input";
-
-import { cn } from "@/lib/utils";
-import { useChat } from "ai/react";
-import { useTheme } from "next-themes";
-import { ElementRef, useEffect, useRef } from "react";
-import { BeatLoader } from "react-spinners";
+import ButtonRotatingBackgroundGradient from "@/components/button-ai";
+import CardAnimatedBorderGradient from "@/components/card-border";
+import { TypingEffect } from "@/components/typewriter";
+import Link from "next/link";
 
 export default function Home() {
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    data,
-    isLoading,
-    setInput,
-  } = useChat();
-  const { theme } = useTheme();
-  const scrollRef = useRef<ElementRef<"div">>(null);
-  useEffect(() => {
-    scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages.length]);
-
   return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      {messages.length > 0 ? (
-        messages.map((m) => (
-          <div
-            key={m.id}
-            className={cn("whitespace-pre-wrap", {
-              "text-blue-500 text-right p-4  gap-x-8 rounded-lg max-w-lg ":
-                m.role === "user",
-              "text-green-500 p-4 w-full flex items-start gap-x-8 rounded-lg max-w-lg bg-muted":
-                m.role !== "user",
-            })}
-          >
-            {m.role === "user" ? "" : ""}
-            {m.content}
-          </div>
-        ))
-      ) : (
-        <>
-          <EmptyStateAI setInput={setInput} />
-        </>
-      )}
-      <form onSubmit={handleSubmit}>
-        {isLoading && (
-          <div className="p-4 rounded-lg w-1/2 flex items-center justify-center bg-muted mt-10">
-            <BeatLoader
-              color={theme === "light" ? "black" : "white"}
-              size={5}
-            />
-          </div>
-        )}
-        <div ref={scrollRef} />
-        <Input
-          className="fixed bottom-0 w-[80vw] md:w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
-          value={input}
-          placeholder="Talk to the application..."
-          onChange={handleInputChange}
-        />
-        {/* <IndexDatabase /> */}
-      </form>
+    <div className="flex flex-col justify-center items-center text-center h-screen py-24 mx-[10vw]">
+      <h1 className="font-bold text-4xl">Amalgam: A blend between</h1>
+      <TypingEffect />
+      <h3 className="text-xl mt-5 font-ranadeRegular text-center">
+        This is my submission for{" "}
+        <a
+          href="https://hashnode.com/hackathons/outerbase"
+          target="_blank"
+          className="text-xl hover:underline font-satoshiBlack "
+        >
+          Outerbase x Hashnode
+        </a>{" "}
+        hackathon. <br />
+        <a
+          href="https://shreyas-chaliha.hashnode.dev/"
+          target="_blank"
+          className="underline hover:cursor-pointer text-base hover:text-indigo-500"
+        >
+          Hashnode Article
+        </a>
+      </h3>
+      <Link href="/ai">
+        <ButtonRotatingBackgroundGradient />
+      </Link>
     </div>
   );
 }
