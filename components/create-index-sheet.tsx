@@ -11,18 +11,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Separator } from "./ui/separator";
 import { useToast } from "./ui/use-toast";
 
 type PromptFormValues = {
   name: string;
 };
 
-export function SearchSheet() {
+export function CreateIndexSheet() {
   const { toast } = useToast();
 
   const form = useForm<PromptFormValues>({
@@ -69,7 +65,7 @@ export function SearchSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Create An Index</Button>
+        <Button variant="outline">Create Index</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
