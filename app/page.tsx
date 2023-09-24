@@ -2,6 +2,7 @@
 import ButtonRotatingBackgroundGradient from "@/components/button-ai";
 import CardAnimatedBorderGradient from "@/components/card-border";
 import { TypingEffect } from "@/components/typewriter";
+import Update from "@/components/update";
 import Link from "next/link";
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
       <Link href="/ai">
         <ButtonRotatingBackgroundGradient />
       </Link>
+      {/* <Update /> */}
     </div>
   );
 }
