@@ -37,7 +37,7 @@ export function EmptyStateAI({ setInput }: Pick<UseChatHelpers, "setInput">) {
         <div className="text-2xl font-ranadeRegular">
           <Typewriter
             options={{
-              strings: ["Welcome", "Ask a question related to the application"],
+              strings: ["Welcome", "Ask a question related to this application"],
               autoStart: true,
               loop: true,
             }}

@@ -57,7 +57,8 @@ export async function POST(req: Request) {
       console.log(result.text, "TEXT TEXT");
       return new StreamingTextResponse(result.text);
     } else {
-      console.log("Since there are no matches, GPT-3 will not be queried.");
+      console.log("There are no matches.");
+      return new NextResponse("No Matches", { status: 200 });
     }
   } catch (error) {
     console.log("[READ_error]", error);
