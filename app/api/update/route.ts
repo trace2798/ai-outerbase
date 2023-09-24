@@ -4,7 +4,7 @@ import { TextLoader } from "langchain/document_loaders/fs/text";
 import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { updatePinecone } from "../../../utils";
-import { indexName } from "../../../config";
+// import { indexName } from "../../../config";
 
 export async function POST() {
   const loader = new DirectoryLoader("./documents", {
@@ -22,7 +22,17 @@ export async function POST() {
   });
 
   try {
-    // await createPineconeIndex(client, indexName, vectorDimensions);
+    const responseIndex = await fetch(
+      "https://daily-beige.cmd.outerbase.io/pinecone",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+    // console.log(responseIndex);
+    const indexName = await responseIndex.json();
     await updatePinecone(client, indexName, docs);
   } catch (err) {
     console.log("error: ", err);

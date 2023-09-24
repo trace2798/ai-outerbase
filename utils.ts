@@ -100,6 +100,7 @@ export const updatePinecone = async (
   console.log("Retrieving Pinecone index...");
   // 1. Retrieve Pinecone index
   const index = client.Index(indexName);
+
   // 2. Log the retrieved index name
   console.log(`Pinecone index retrieved: ${indexName}`);
   // 3. Process each document in the docs array
@@ -146,13 +147,20 @@ export const updatePinecone = async (
       console.log(batch, "BATCH");
       // When batch is full or it's the last item, upsert the vectors
       if (batch.length === batchSize || idx === chunks.length - 1) {
-        // await index.upsert({
-        //   upsertRequest: {
-        //     vectors: batch,
-        //   },
-        // });
-        await index.upsert(batch);
-
+        // await index.upsert(batch);
+        const data = await fetch(
+          `https://daily-beige.cmd.outerbase.io/upsertPinecone`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(batch),
+          }
+        );
+        console.log(data, "UPSERt response");
+        const example = await data.json();
+        console.log(example, "UPSERT");
         // Empty the batch
         batch = [];
       }

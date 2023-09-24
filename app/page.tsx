@@ -31,7 +31,7 @@ export default function Home() {
       <Link href="/ai">
         <ButtonRotatingBackgroundGradient />
       </Link>
-      {/* <Update /> */}
+      <Update />
     </div>
   );
 }
