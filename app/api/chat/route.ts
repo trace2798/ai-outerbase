@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       }
     );
     const data = await embedandquerypinecone.json();
-    console.log(data);
+    console.log(data, "DATA USING COMMAND");
     const content = data.matches[0].metadata.pageContent;
     // 5. Log the number of matches
     console.log(`Found ${data.matches.length} matches...`);
@@ -45,6 +45,7 @@ export async function POST(req: Request) {
       const concatenatedPageContent = data.matches
         .map((match: any) => match.metadata.pageContent)
         .join(" ");
+        console.log(concatenatedPageContent, "CONCATENATED PAGE CONTENT");
       const result = await chain.call({
         input_documents: [
           new Document({ pageContent: concatenatedPageContent }),

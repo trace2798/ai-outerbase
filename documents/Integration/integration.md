@@ -1,10 +1,3 @@
----
-title: "Integration"
-slug: "/integration"
-hidden: false
-createdAt: "2022-10-27T22:40:52.852Z"
-updatedAt: "2023-08-22T20:38:42.840Z"
----
 
 ### Outerbase Usage
 
