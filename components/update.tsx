@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Button } from "./ui/button";
 
 interface UpdateProps {}
 
@@ -16,9 +17,9 @@ const Update: FC<UpdateProps> = ({}) => {
   }
   return (
     <>
-      <button onClick={createIndexAndEmbeddings}>
+      <Button onClick={createIndexAndEmbeddings}>
         Create index and embeddings
-      </button>
+      </Button>
     </>
   );
 };

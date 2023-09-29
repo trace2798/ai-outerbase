@@ -1,10 +1,9 @@
-import { NextResponse } from "next/server";
-import { Pinecone } from "@pinecone-database/pinecone";
-import { TextLoader } from "langchain/document_loaders/fs/text";
 import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
-import { updatePinecone } from "../../../utils";
-// import { indexName } from "../../../config";
+import { TextLoader } from "langchain/document_loaders/fs/text";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { NextResponse } from "next/server";
 
 export async function POST() {
   const loader = new DirectoryLoader("./documents", {
@@ -14,26 +13,51 @@ export async function POST() {
   });
 
   const docs = await loader.load();
-  // const vectorDimensions = 1536;
-
-  const client = new Pinecone({
-    apiKey: process.env.PINECONE_API_KEY || "",
-    environment: process.env.PINECONE_ENVIRONMENT || "",
-  });
-
   try {
-    const responseIndex = await fetch(
-      "https://daily-beige.cmd.outerbase.io/pinecone",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
+    for (const doc of docs) {
+      const txtPath = doc.metadata.source;
+      const text = doc.pageContent;
+
+      const textSplitter = new RecursiveCharacterTextSplitter({
+        chunkSize: 1000,
+      });
+      //Split text into chunks (documents)
+      const chunks = await textSplitter.createDocuments([text]);
+
+      const embeddingsArrays = await new OpenAIEmbeddings().embedDocuments(
+        chunks.map((chunk) => chunk.pageContent.replace(/\n/g, " "))
+      );
+      const batchSize = 100;
+      let batch: any = [];
+      for (let idx = 0; idx < chunks.length; idx++) {
+        const chunk = chunks[idx];
+        const vector = {
+          id: `${txtPath}_${idx}`,
+          values: embeddingsArrays[idx],
+          metadata: {
+            ...chunk.metadata,
+            loc: JSON.stringify(chunk.metadata.loc),
+            pageContent: chunk.pageContent,
+            txtPath: txtPath,
+          },
+        };
+        batch = [...batch, vector];
+        if (batch.length === batchSize || idx === chunks.length - 1) {
+          await fetch(`COMMAND_TO_UPSERT_TO_PINECONE`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(batch),
+          });
+          console.log("Upserting Vector using Outerbase Command");
+          // Empty the batch
+          batch = [];
+        }
       }
-    );
-    // console.log(responseIndex);
-    const indexName = await responseIndex.json();
-    await updatePinecone(client, indexName, docs);
+      // Log the number of vectors updated just for verification purpose
+      console.log(`Pinecone index updated with ${chunks.length} vectors`);
+    }
   } catch (err) {
     console.log("error: ", err);
   }

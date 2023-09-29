@@ -31,7 +31,7 @@ export function CreateIndexSheet() {
   const onSubmit: SubmitHandler<PromptFormValues> = async (values) => {
     try {
       const response = await fetch(
-        `https://daily-beige.cmd.outerbase.io/checkThenCreate`,
+        `COMMAND_URL_TO_CREATE_PINECONE_INDEX`,
         {
           method: "POST",
           headers: {
