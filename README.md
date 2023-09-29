@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Amalgam: A blend between Outerbase, Pinecone and OpenAI
+
+### This repo is for my submission for the Outerbase X Hashnode Hackathon which took place during Septembar 1 - Septembar 30, 2023
+
+#### Hashnode article: [Amalgam: A blend between Outerbase, Pinecone and OpenAI](https://shreyas-chaliha.hashnode.dev/amalgam-a-blend-between-outerbase-pinecone-and-openai) 
 
 ## Getting Started
 
-First, run the development server:
+### Either fork the repo or directly clone it
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Prerequisites
+
+**Node version 16.8 or later  
+**macOS, Windows (including WSL), and Linux are supported.
+**OpenAI api key.
+**Pinecone account with keys.
+
+### To directly clone the repo
+
+```shell
+git clone https://github.com/trace2798/ai-outerbase.git
+```
+### Command
+To make the application completely functional, you will need to have the values for the environment mentioned below and the Commands as described in the article.
+
+```shell
+npm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Setup .env file
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```js
+OPENAI_API_KEY=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Start the app
 
-## Learn More
+```shell
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Available commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Running commands with npm `npm run [command]`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| command         | description                              |
+| :-------------- | :--------------------------------------- |
+| `dev`           | Starts a development instance of the app |
+| `build`         | To build your application                |
+| `start`         | Starts a production  instance of the app |
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## For env value and functionality of this application I have wrote a very detailed article on [Hashnode](https://shreyas-chaliha.hashnode.dev/amalgam-a-blend-between-outerbase-pinecone-and-openai)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+Youtube Demo Link: Mentioned in the article. There are multiple which showcasing every step.
