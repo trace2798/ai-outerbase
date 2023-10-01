@@ -54,3 +54,4 @@ Running commands with npm `npm run [command]`
 
 
 Youtube Demo Link: Mentioned in the article. There are multiple which showcasing every step.
+This is a link to the Complete Video made by merging all of them [Amalgam](https://www.youtube.com/watch?v=QEjUk8gJnog)
