@@ -29,7 +29,7 @@ async function userCode() {
       return embeddingValue;
     }
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 }
 

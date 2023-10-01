@@ -10,9 +10,9 @@ const Update: FC<UpdateProps> = ({}) => {
         method: "POST",
       });
       const json = await result.json();
-      console.log("result: ", json);
+      //console.log("result: ", json);
     } catch (err) {
-      console.log("err:", err);
+      //console.log("err:", err);
     }
   }
   return (

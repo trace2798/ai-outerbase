@@ -42,9 +42,9 @@ export function CreateIndexSheet() {
           }),
         }
       );
-      console.log(response);
+      //console.log(response);
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       toast({
         title: `${data}`,
         description: "Click to visit the page",

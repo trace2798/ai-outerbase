@@ -51,16 +51,16 @@ export async function POST() {
             },
             body: JSON.stringify(batch),
           });
-          console.log("Upserting Vector using Outerbase Command");
+          //console.log("Upserting Vector using Outerbase Command");
           // Empty the batch
           batch = [];
         }
       }
       // Log the number of vectors updated just for verification purpose
-      console.log(`Pinecone index updated with ${chunks.length} vectors`);
+      //console.log(`Pinecone index updated with ${chunks.length} vectors`);
     }
   } catch (err) {
-    console.log("error: ", err);
+    //console.log("error: ", err);
   }
 
   return NextResponse.json({

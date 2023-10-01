@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     );
     const data = await embedandquerypinecone.json();
     const content = data.matches[0].metadata.pageContent;
-    console.log(`Asking question: ${question}...`);
+    //console.log(`Asking question: ${question}...`);
     if (data.matches.length) {
       const llm = new OpenAI({
         modelName: "gpt-3.5-turbo",
@@ -41,11 +41,11 @@ export async function POST(req: Request) {
       });
       return new StreamingTextResponse(result.text);
     } else {
-      console.log("There are no matches.");
+      //console.log("There are no matches.");
       return new NextResponse("No Matches", { status: 200 });
     }
   } catch (error) {
-    console.log("[READ_error]", error);
+    //console.log("[READ_error]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
