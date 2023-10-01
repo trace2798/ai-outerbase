@@ -22,7 +22,7 @@ export default function Home() {
         </a>{" "}
         hackathon. <br />
         <a
-          href="https://shreyas-chaliha.hashnode.dev/"
+          href="https://shreyas-chaliha.hashnode.dev/amalgam-a-blend-between-outerbase-pinecone-and-openai"
           target="_blank"
           className="underline hover:cursor-pointer text-base hover:text-indigo-500"
         >

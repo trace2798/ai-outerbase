@@ -8,8 +8,9 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const question = body.messages[body.messages.length - 1].content;
+   //Change this to your embed and query command link
     const embedandquerypinecone = await fetch(
-      `YOUR_EMEBED&QUERY_COMMAND_LINK`,
+      `https://daily-beige.cmd.outerbase.io/embedandquery`,
       {
         method: "POST",
         headers: {
@@ -26,6 +27,7 @@ export async function POST(req: Request) {
         modelName: "gpt-3.5-turbo",
         streaming: true,
         temperature: 1.0,
+        maxTokens: 500,
       });
       const chain = loadQAStuffChain(llm);
       const concatenatedPageContent = data.matches

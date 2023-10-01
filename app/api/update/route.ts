@@ -43,7 +43,8 @@ export async function POST() {
         };
         batch = [...batch, vector];
         if (batch.length === batchSize || idx === chunks.length - 1) {
-          await fetch(`COMMAND_TO_UPSERT_TO_PINECONE`, {
+       //change this to your COMMAND_TO_UPSERT_TO_PINECONE
+          await fetch(`https://daily-beige.cmd.outerbase.io/upsertPinecone`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
