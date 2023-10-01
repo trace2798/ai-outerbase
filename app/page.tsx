@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center text-center h-screen py-24 mx-[10vw]">
-      <CreateIndexSheet />
+      {/* <CreateIndexSheet /> */}
       <h1 className="font-bold text-4xl">Amalgam: A blend between</h1>
       <TypingEffect />
       <h3 className="text-xl mt-5 font-ranadeRegular text-center">
@@ -32,7 +32,7 @@ export default function Home() {
       <Link href="/ai">
         <ButtonRotatingBackgroundGradient />
       </Link>
-      <Update />
+      {/* <Update /> */}
     </div>
   );
 }
